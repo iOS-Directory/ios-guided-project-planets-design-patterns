@@ -50,6 +50,10 @@ class PlanetDetailViewController: UIViewController {
     
     override func decodeRestorableState(with coder: NSCoder) {
         // Data -> Take Planet -> set planet var
+        
+        guard let planetData = coder.decodeObject(forKey: "planetDataKey") as? Data else { return }
+        
+        planet = try? PropertyListDecoder().decode(Planet.self, from: planetData)
     }
     
 }
